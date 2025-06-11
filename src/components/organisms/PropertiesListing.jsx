@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import ApperIcon from './ApperIcon';
-import PropertyCard from './PropertyCard';
-import SearchFilters from './SearchFilters';
-import * as propertyService from '../services/api/propertyService';
+import ApperIcon from '@/components/ApperIcon';
+import PropertyCard from '@/components/organisms/PropertyCard';
+import SearchFilters from '@/components/organisms/SearchFilters';
+import LoadingSkeleton from '@/components/organisms/LoadingSkeleton';
+import EmptyStateMessage from '@/components/organisms/EmptyStateMessage';
+import ErrorStateMessage from '@/components/organisms/ErrorStateMessage';
+import Button from '@/components/atoms/Button';
+import Input from '@/components/atoms/Input';
+import Text from '@/components/atoms/Text';
+import * as propertyService from '@/services/api/propertyService';
 
-const MainFeature = () => {
+const PropertiesListing = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -29,6 +36,17 @@ const MainFeature = () => {
   useEffect(() => {
     loadProperties();
   }, []);
+
+  // Update searchTerm and filters from URL query params on mount/change
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const query = params.get('q') || '';
+    setSearchTerm(query);
+    
+    // Parse filters from URL if needed, or apply defaults
+    // For simplicity, current filters are applied based on internal state + search query.
+    // A more robust implementation might parse all filter params from URL.
+  }, [location.search]);
 
   useEffect(() => {
     applyFilters();
@@ -99,27 +117,7 @@ const MainFeature = () => {
   if (loading) {
     return (
       <div className="container mx-auto px-4 md:px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-xl shadow-sm overflow-hidden"
-            >
-              <div className="h-48 bg-surface-200 animate-pulse" />
-              <div className="p-4 space-y-3">
-                <div className="h-6 bg-surface-200 rounded animate-pulse" />
-                <div className="h-4 bg-surface-200 rounded w-3/4 animate-pulse" />
-                <div className="flex space-x-4">
-                  <div className="h-4 bg-surface-200 rounded w-16 animate-pulse" />
-                  <div className="h-4 bg-surface-200 rounded w-16 animate-pulse" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <LoadingSkeleton count={6} type="card" />
       </div>
     );
   }
@@ -127,17 +125,11 @@ const MainFeature = () => {
   if (error) {
     return (
       <div className="container mx-auto px-4 md:px-6 py-8">
-        <div className="text-center py-12">
-          <ApperIcon name="AlertCircle" className="w-16 h-16 text-error mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-surface-900 mb-2">Error Loading Properties</h3>
-          <p className="text-surface-600 mb-4">{error}</p>
-          <button
-            onClick={loadProperties}
-            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            Try Again
-          </button>
-        </div>
+        <ErrorStateMessage 
+          title="Error Loading Properties" 
+          message={error} 
+          onRetry={loadProperties} 
+        />
       </div>
     );
   }
@@ -148,16 +140,16 @@ const MainFeature = () => {
       <div className="mb-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-3xl font-display font-semibold text-surface-900 mb-2">
+            <Text as="h1" className="text-3xl font-display font-semibold text-surface-900 mb-2">
               Find Your Perfect Home
-            </h1>
-            <p className="text-surface-600">
+            </Text>
+            <Text as="p" className="text-surface-600">
               Discover amazing properties in your desired location
-            </p>
+            </Text>
           </div>
           
           <div className="flex items-center space-x-3">
-            <button
+            <Button
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-all duration-200 ${
                 showFilters
@@ -166,11 +158,11 @@ const MainFeature = () => {
               }`}
             >
               <ApperIcon name="Filter" className="w-4 h-4" />
-              <span>Filters</span>
-            </button>
+              <Text as="span">Filters</Text>
+            </Button>
             
             <div className="flex bg-surface-100 rounded-lg p-1">
-              <button
+              <Button
                 onClick={() => setViewMode('grid')}
                 className={`p-2 rounded-md transition-all duration-200 ${
                   viewMode === 'grid'
@@ -179,8 +171,8 @@ const MainFeature = () => {
                 }`}
               >
                 <ApperIcon name="Grid3X3" className="w-4 h-4" />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => setViewMode('list')}
                 className={`p-2 rounded-md transition-all duration-200 ${
                   viewMode === 'list'
@@ -189,7 +181,7 @@ const MainFeature = () => {
                 }`}
               >
                 <ApperIcon name="List" className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -197,7 +189,7 @@ const MainFeature = () => {
         {/* Search Bar */}
         <form onSubmit={handleSearch} className="relative max-w-2xl">
           <ApperIcon name="Search" className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-surface-400" />
-          <input
+          <Input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -227,46 +219,31 @@ const MainFeature = () => {
 
       {/* Results Count */}
       <div className="mb-6">
-        <p className="text-surface-600">
+        <Text as="p" className="text-surface-600">
           {filteredProperties.length} {filteredProperties.length === 1 ? 'property' : 'properties'} found
-        </p>
+        </Text>
       </div>
 
       {/* Properties Grid/List */}
       {filteredProperties.length === 0 ? (
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="text-center py-12"
-        >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-          >
-            <ApperIcon name="Home" className="w-16 h-16 text-surface-300 mx-auto" />
-          </motion.div>
-          <h3 className="mt-4 text-lg font-semibold text-surface-900">No properties found</h3>
-          <p className="mt-2 text-surface-500 mb-4">
-            Try adjusting your search criteria or browse all properties
-          </p>
-          <button
-            onClick={() => {
-              setFilters({
-                minPrice: 0,
-                maxPrice: 2000000,
-                minBeds: 0,
-                minBaths: 0,
-                propertyTypes: [],
-                location: '',
-                radius: 10
-              });
-              setSearchTerm('');
-            }}
-            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            Clear Filters
-          </button>
-        </motion.div>
+        <EmptyStateMessage 
+          iconName="Home"
+          title="No properties found"
+          message="Try adjusting your search criteria or clear filters to see more properties."
+          buttonText="Clear Filters"
+          onButtonClick={() => {
+            setFilters({
+              minPrice: 0,
+              maxPrice: 2000000,
+              minBeds: 0,
+              minBaths: 0,
+              propertyTypes: [],
+              location: '',
+              radius: 10
+            });
+            setSearchTerm('');
+          }}
+        />
       ) : (
         <motion.div
           layout
@@ -298,4 +275,4 @@ const MainFeature = () => {
   );
 };
 
-export default MainFeature;
+export default PropertiesListing;

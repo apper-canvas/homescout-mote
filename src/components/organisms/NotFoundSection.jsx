@@ -1,8 +1,11 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import ApperIcon from '../components/ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import MotionButton from '@/components/molecules/MotionButton';
+import Text from '@/components/atoms/Text';
 
-const NotFound = () => {
+const NotFoundSection = () => {
   const navigate = useNavigate();
 
   return (
@@ -28,39 +31,39 @@ const NotFound = () => {
             <ApperIcon name="Home" className="w-24 h-24 text-surface-300 mx-auto" />
           </motion.div>
           
-          <h1 className="text-6xl font-display font-bold text-surface-900 mb-4">
+          <Text as="h1" className="text-6xl font-display font-bold text-surface-900 mb-4">
             404
-          </h1>
+          </Text>
           
-          <h2 className="text-2xl font-semibold text-surface-700 mb-4">
+          <Text as="h2" className="text-2xl font-semibold text-surface-700 mb-4">
             Property Not Found
-          </h2>
+          </Text>
           
-          <p className="text-surface-500 mb-8 leading-relaxed">
+          <Text as="p" className="text-surface-500 mb-8 leading-relaxed">
             The page you're looking for seems to have moved or doesn't exist. 
             Let's help you find your dream home instead.
-          </p>
+          </Text>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.button
+            <MotionButton
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/')}
               className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium inline-flex items-center justify-center space-x-2"
             >
               <ApperIcon name="Home" className="w-4 h-4" />
-              <span>Go Home</span>
-            </motion.button>
+              <Text as="span">Go Home</Text>
+            </MotionButton>
             
-            <motion.button
+            <MotionButton
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/search')}
               className="px-6 py-3 bg-white text-primary border border-primary rounded-lg hover:bg-primary/5 transition-colors font-medium inline-flex items-center justify-center space-x-2"
             >
               <ApperIcon name="Search" className="w-4 h-4" />
-              <span>Search Properties</span>
-            </motion.button>
+              <Text as="span">Search Properties</Text>
+            </MotionButton>
           </div>
           
           <motion.div
@@ -69,19 +72,19 @@ const NotFound = () => {
             transition={{ delay: 0.5 }}
             className="mt-12 text-center"
           >
-            <p className="text-sm text-surface-400 mb-4">
+            <Text as="p" className="text-sm text-surface-400 mb-4">
               Popular searches:
-            </p>
+            </Text>
             <div className="flex flex-wrap justify-center gap-2">
               {['Houses under $500K', '3+ bedrooms', 'Condos', 'New listings'].map((term, index) => (
-                <motion.button
+                <MotionButton
                   key={index}
                   whileHover={{ scale: 1.05 }}
                   onClick={() => navigate(`/search?q=${encodeURIComponent(term)}`)}
                   className="px-3 py-1 bg-surface-100 text-surface-600 rounded-full text-sm hover:bg-surface-200 transition-colors"
                 >
                   {term}
-                </motion.button>
+                </MotionButton>
               ))}
             </div>
           </motion.div>
@@ -91,4 +94,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundSection;

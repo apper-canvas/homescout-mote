@@ -1,12 +1,18 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
-import ApperIcon from '../components/ApperIcon';
-import PropertyCard from '../components/PropertyCard';
-import * as savedPropertyService from '../services/api/savedPropertyService';
-import * as propertyService from '../services/api/propertyService';
+import ApperIcon from '@/components/ApperIcon';
+import PropertyCard from '@/components/organisms/PropertyCard';
+import LoadingSkeleton from '@/components/organisms/LoadingSkeleton';
+import ErrorStateMessage from '@/components/organisms/ErrorStateMessage';
+import EmptyStateMessage from '@/components/organisms/EmptyStateMessage';
+import Button from '@/components/atoms/Button';
+import Text from '@/components/atoms/Text';
+import MotionButton from '@/components/molecules/MotionButton';
+import * as savedPropertyService from '@/services/api/savedPropertyService';
+import * as propertyService from '@/services/api/propertyService';
 
-const Saved = () => {
+const SavedPropertiesPage = () => {
   const [savedProperties, setSavedProperties] = useState([]);
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,7 +33,6 @@ const Saved = () => {
       
       setSavedProperties(savedResult);
       
-      // Filter properties to only show saved ones
       const savedPropertyIds = savedResult.map(saved => saved.propertyId);
       const filteredProperties = propertiesResult.filter(property => 
         savedPropertyIds.includes(property.id)
@@ -56,7 +61,6 @@ const Saved = () => {
   const handleClearAll = async () => {
     if (window.confirm('Are you sure you want to remove all saved properties?')) {
       try {
-        // Remove all saved properties
         await Promise.all(
           savedProperties.map(saved => savedPropertyService.delete(saved.propertyId))
         );
@@ -76,28 +80,7 @@ const Saved = () => {
           <div className="h-8 bg-surface-200 rounded w-48 mb-2 animate-pulse" />
           <div className="h-4 bg-surface-200 rounded w-64 animate-pulse" />
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-xl shadow-sm overflow-hidden"
-            >
-              <div className="h-48 bg-surface-200 animate-pulse" />
-              <div className="p-4 space-y-3">
-                <div className="h-6 bg-surface-200 rounded animate-pulse" />
-                <div className="h-4 bg-surface-200 rounded w-3/4 animate-pulse" />
-                <div className="flex space-x-4">
-                  <div className="h-4 bg-surface-200 rounded w-16 animate-pulse" />
-                  <div className="h-4 bg-surface-200 rounded w-16 animate-pulse" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <LoadingSkeleton count={6} type="card" />
       </div>
     );
   }
@@ -105,17 +88,11 @@ const Saved = () => {
   if (error) {
     return (
       <div className="container mx-auto px-4 md:px-6 py-8">
-        <div className="text-center py-12">
-          <ApperIcon name="AlertCircle" className="w-16 h-16 text-error mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-surface-900 mb-2">Error Loading Saved Properties</h3>
-          <p className="text-surface-600 mb-4">{error}</p>
-          <button
-            onClick={loadSavedProperties}
-            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            Try Again
-          </button>
-        </div>
+        <ErrorStateMessage 
+          title="Error Loading Saved Properties" 
+          message={error} 
+          onRetry={loadSavedProperties} 
+        />
       </div>
     );
   }
@@ -125,52 +102,34 @@ const Saved = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-display font-semibold text-surface-900 mb-2">
+          <Text as="h1" className="text-3xl font-display font-semibold text-surface-900 mb-2">
             Saved Properties
-          </h1>
-          <p className="text-surface-600">
+          </Text>
+          <Text as="p" className="text-surface-600">
             {properties.length} {properties.length === 1 ? 'property' : 'properties'} saved
-          </p>
+          </Text>
         </div>
         
         {properties.length > 0 && (
-          <button
+          <Button
             onClick={handleClearAll}
             className="mt-4 sm:mt-0 flex items-center space-x-2 px-4 py-2 text-surface-600 hover:text-error border border-surface-300 rounded-lg hover:border-error transition-colors"
           >
             <ApperIcon name="Trash2" className="w-4 h-4" />
-            <span>Clear All</span>
-          </button>
+            <Text as="span">Clear All</Text>
+          </Button>
         )}
       </div>
 
       {/* Content */}
       {properties.length === 0 ? (
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="text-center py-16"
-        >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-          >
-            <ApperIcon name="Heart" className="w-20 h-20 text-surface-300 mx-auto" />
-          </motion.div>
-          <h3 className="mt-6 text-xl font-semibold text-surface-900">No saved properties yet</h3>
-          <p className="mt-2 text-surface-500 mb-8 max-w-md mx-auto">
-            Start exploring properties and save your favorites to see them here. You can save properties by clicking the heart icon.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => window.location.href = '/search'}
-            className="px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium inline-flex items-center space-x-2"
-          >
-            <ApperIcon name="Search" className="w-4 h-4" />
-            <span>Explore Properties</span>
-          </motion.button>
-        </motion.div>
+        <EmptyStateMessage
+          iconName="Heart"
+          title="No saved properties yet"
+          message="Start exploring properties and save your favorites to see them here. You can save properties by clicking the heart icon."
+          buttonText="Explore Properties"
+          onButtonClick={() => window.location.href = '/search'}
+        />
       ) : (
         <motion.div
           layout
@@ -188,7 +147,7 @@ const Saved = () => {
               <PropertyCard property={property} />
               
               {/* Remove Button Overlay */}
-              <motion.button
+              <MotionButton
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={(e) => {
@@ -199,7 +158,7 @@ const Saved = () => {
                 title="Remove from saved"
               >
                 <ApperIcon name="X" className="w-4 h-4" />
-              </motion.button>
+              </MotionButton>
             </motion.div>
           ))}
         </motion.div>
@@ -213,26 +172,26 @@ const Saved = () => {
           transition={{ delay: 0.5 }}
           className="mt-12 bg-white rounded-xl p-6 shadow-sm"
         >
-          <h3 className="text-lg font-semibold text-surface-900 mb-4 flex items-center space-x-2">
+          <Text as="h3" className="text-lg font-semibold text-surface-900 mb-4 flex items-center space-x-2">
             <ApperIcon name="Lightbulb" className="w-5 h-5 text-warning" />
-            <span>Tips for Your Saved Properties</span>
-          </h3>
+            <Text as="span">Tips for Your Saved Properties</Text>
+          </Text>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-surface-600">
             <div className="flex items-start space-x-2">
               <ApperIcon name="Check" className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
-              <span>Compare properties by viewing them side-by-side on separate tabs</span>
+              <Text as="span">Compare properties by viewing them side-by-side on separate tabs</Text>
             </div>
             <div className="flex items-start space-x-2">
               <ApperIcon name="Check" className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
-              <span>Contact agents directly from the property detail pages</span>
+              <Text as="span">Contact agents directly from the property detail pages</Text>
             </div>
             <div className="flex items-start space-x-2">
               <ApperIcon name="Check" className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
-              <span>Use the map view to see all your saved properties at once</span>
+              <Text as="span">Use the map view to see all your saved properties at once</Text>
             </div>
             <div className="flex items-start space-x-2">
               <ApperIcon name="Check" className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
-              <span>Properties are automatically saved across your browsing sessions</span>
+              <Text as="span">Properties are automatically saved across your browsing sessions</Text>
             </div>
           </div>
         </motion.div>
@@ -241,4 +200,4 @@ const Saved = () => {
   );
 };
 
-export default Saved;
+export default SavedPropertiesPage;

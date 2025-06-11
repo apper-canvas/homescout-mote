@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Layout from './Layout';
-import Home from './pages/Home';
-import Properties from './pages/Properties';
-import Property from './pages/Property';
-import Saved from './pages/Saved';
-import MapView from './pages/MapView';
-import NotFound from './pages/NotFound';
+import HomePage from '@/components/pages/HomePage';
+import PropertiesPage from '@/components/pages/PropertiesPage';
+import PropertyDetailPage from '@/components/pages/PropertyDetailPage';
+import SavedPropertiesPage from '@/components/pages/SavedPropertiesPage';
+import MapViewPage from '@/components/pages/MapViewPage';
+import NotFoundPage from '@/components/pages/NotFoundPage';
 
 function App() {
   return (
@@ -14,12 +14,12 @@ function App() {
       <div className="min-h-screen bg-surface-50">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="search" element={<Properties />} />
-            <Route path="property/:id" element={<Property />} />
-            <Route path="saved" element={<Saved />} />
-            <Route path="map" element={<MapView />} />
-            <Route path="*" element={<NotFound />} />
+<Route index element={<HomePage />} />
+            <Route path="search" element={<PropertiesPage />} />
+            <Route path="property/:id" element={<PropertyDetailPage />} />
+            <Route path="saved" element={<SavedPropertiesPage />} />
+            <Route path="map" element={<MapViewPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
         
