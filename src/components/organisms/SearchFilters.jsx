@@ -57,13 +57,13 @@ const SearchFilters = ({ filters, onFiltersChange, onClose }) => {
     return `$${price}`;
   };
 
-  const hasActiveFilters = 
+const hasActiveFilters = 
     (localFilters.propertyTypes?.length > 0 || 
     localFilters.minBeds > 0 || 
     localFilters.minBaths > 0 || 
     localFilters.location ||
     localFilters.minPrice > 0 || // Assuming default minPrice is 0
-    localFilters.maxPrice &lt; 2000000); // Assuming default maxPrice is 2000000
+    localFilters.maxPrice < 2000000); // Assuming default maxPrice is 2000000
 
   return (
     <motion.div
@@ -254,8 +254,8 @@ const SearchFilters = ({ filters, onFiltersChange, onClose }) => {
                   tagTextClass="text-info"
                   buttonBgClass="bg-info/20 hover:bg-info/30"
                 />
-              )}
-              {localFilters.maxPrice &lt; 2000000 && (
+)}
+              {localFilters.maxPrice < 2000000 && (
                 <ClearFilterTag
                   label={`Max Price: ${formatPrice(localFilters.maxPrice)}`}
                   onClear={() => handleFilterChange('maxPrice', 2000000)}
