@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "propertyId": "1",
+    "savedDate": "2024-02-15T10:30:00.000Z",
+    "notes": "Love the backyard and neighborhood"
+  },
+  {
+    "id": "2",
+    "propertyId": "3",
+    "savedDate": "2024-02-14T15:45:00.000Z",
+    "notes": "Great schools nearby"
+  },
+  {
+    "id": "3",
+    "propertyId": "7",
+    "savedDate": "2024-02-13T09:20:00.000Z",
+    "notes": "Dream home but might be too expensive"
+  }
+]

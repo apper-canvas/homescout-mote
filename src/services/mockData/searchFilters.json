@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "name": "First Time Buyer",
+    "minPrice": 0,
+    "maxPrice": 400000,
+    "minBeds": 2,
+    "minBaths": 1,
+    "propertyTypes": ["House", "Condo"],
+    "location": "",
+    "radius": 25
+  },
+  {
+    "id": "2",
+    "name": "Family Home",
+    "minPrice": 300000,
+    "maxPrice": 800000,
+    "minBeds": 3,
+    "minBaths": 2,
+    "propertyTypes": ["House", "Townhouse"],
+    "location": "",
+    "radius": 15
+  },
+  {
+    "id": "3",
+    "name": "Luxury Properties",
+    "minPrice": 800000,
+    "maxPrice": 2000000,
+    "minBeds": 3,
+    "minBaths": 2,
+    "propertyTypes": ["House", "Condo", "Villa"],
+    "location": "",
+    "radius": 20
+  }
+]

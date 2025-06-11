@@ -1,0 +1,250 @@
+[
+  {
+    "id": "1",
+    "address": "123 Maple Street, Springfield, IL 62701",
+    "price": 425000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "squareFeet": 1850,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop"
+    ],
+    "description": "Charming colonial home featuring hardwood floors throughout, updated kitchen with granite countertops, spacious living areas, and a beautiful backyard perfect for entertaining. Located in a quiet neighborhood with excellent schools nearby.",
+    "features": [
+      "Hardwood floors",
+      "Updated kitchen",
+      "Granite countertops",
+      "Central air conditioning",
+      "Two-car garage",
+      "Fenced backyard",
+      "Walk-in closets",
+      "Fireplace"
+    ],
+    "latitude": 39.7817,
+    "longitude": -89.6501,
+    "yearBuilt": 1995,
+    "lotSize": 8500,
+    "listingDate": "2024-01-15T00:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "address": "456 Oak Avenue, Chicago, IL 60601",
+    "price": 750000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "squareFeet": 1200,
+    "propertyType": "Condo",
+    "images": [
+      "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800&h=600&fit=crop"
+    ],
+    "description": "Modern luxury condo in the heart of downtown Chicago. Floor-to-ceiling windows offer stunning city views. Open-concept living with high-end finishes, stainless steel appliances, and in-unit laundry. Building amenities include rooftop deck, fitness center, and concierge service.",
+    "features": [
+      "Floor-to-ceiling windows",
+      "City views",
+      "Stainless steel appliances",
+      "In-unit laundry",
+      "Rooftop deck access",
+      "Fitness center",
+      "Concierge service",
+      "Parking included"
+    ],
+    "latitude": 41.8781,
+    "longitude": -87.6298,
+    "yearBuilt": 2018,
+    "lotSize": 0,
+    "listingDate": "2024-02-01T00:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "address": "789 Pine Ridge Drive, Naperville, IL 60540",
+    "price": 650000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "squareFeet": 2400,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1449844908441-8829872d2607?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=800&h=600&fit=crop"
+    ],
+    "description": "Spacious two-story home in prestigious Naperville neighborhood. Features include a gourmet kitchen, formal dining room, family room with fireplace, master suite with walk-in closet, and finished basement. Premium location near top-rated schools and parks.",
+    "features": [
+      "Gourmet kitchen",
+      "Formal dining room",
+      "Family room with fireplace",
+      "Master suite",
+      "Walk-in closets",
+      "Finished basement",
+      "Three-car garage",
+      "Sprinkler system"
+    ],
+    "latitude": 41.7508,
+    "longitude": -88.1535,
+    "yearBuilt": 2005,
+    "lotSize": 12000,
+    "listingDate": "2024-01-28T00:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "address": "321 Elm Street, Evanston, IL 60201",
+    "price": 550000,
+    "bedrooms": 3,
+    "bathrooms": 2.5,
+    "squareFeet": 1650,
+    "propertyType": "Townhouse",
+    "images": [
+      "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=800&h=600&fit=crop"
+    ],
+    "description": "Contemporary townhouse with modern amenities and thoughtful design. Open floor plan connects living, dining, and kitchen areas. Private patio and rooftop deck provide outdoor living space. Located minutes from Northwestern University and Lake Michigan.",
+    "features": [
+      "Open floor plan",
+      "Modern kitchen",
+      "Private patio",
+      "Rooftop deck",
+      "Attached garage",
+      "Storage space",
+      "Energy efficient",
+      "Near public transit"
+    ],
+    "latitude": 42.0451,
+    "longitude": -87.6877,
+    "yearBuilt": 2012,
+    "lotSize": 3500,
+    "listingDate": "2024-02-10T00:00:00.000Z"
+  },
+  {
+    "id": "5",
+    "address": "654 Birch Lane, Oak Park, IL 60302",
+    "price": 480000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "squareFeet": 1750,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop"
+    ],
+    "description": "Classic Prairie-style home with original character and modern updates. Features include built-in cabinetry, original hardwood floors, updated bathrooms, and a charming front porch. Walking distance to shops, restaurants, and public transportation.",
+    "features": [
+      "Prairie-style architecture",
+      "Original hardwood floors",
+      "Built-in cabinetry",
+      "Updated bathrooms",
+      "Front porch",
+      "Mature landscaping",
+      "Basement storage",
+      "Close to transit"
+    ],
+    "latitude": 41.8850,
+    "longitude": -87.7845,
+    "yearBuilt": 1925,
+    "lotSize": 6800,
+    "listingDate": "2024-02-05T00:00:00.000Z"
+  },
+  {
+    "id": "6",
+    "address": "987 Sunset Boulevard, Aurora, IL 60505",
+    "price": 380000,
+    "bedrooms": 4,
+    "bathrooms": 2.5,
+    "squareFeet": 2100,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop"
+    ],
+    "description": "Spacious family home with room to grow. Recently updated kitchen and bathrooms, large family room, and generous bedroom sizes. Huge backyard perfect for kids and pets. Great value in a family-friendly neighborhood with excellent schools.",
+    "features": [
+      "Recently updated kitchen",
+      "Large family room",
+      "Generous bedroom sizes",
+      "Huge backyard",
+      "Two-car garage",
+      "Full basement",
+      "Newer HVAC system",
+      "Family-friendly neighborhood"
+    ],
+    "latitude": 41.7606,
+    "longitude": -88.3201,
+    "yearBuilt": 1988,
+    "lotSize": 10500,
+    "listingDate": "2024-01-20T00:00:00.000Z"
+  },
+  {
+    "id": "7",
+    "address": "147 Lake Shore Drive, Wilmette, IL 60091",
+    "price": 1250000,
+    "bedrooms": 5,
+    "bathrooms": 4,
+    "squareFeet": 3200,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1628624747186-a94c231e5cd1?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop"
+    ],
+    "description": "Stunning lakefront property with panoramic views of Lake Michigan. Luxury finishes throughout including marble countertops, custom millwork, and premium appliances. Private beach access, multiple decks, and beautifully landscaped grounds. A true showpiece home.",
+    "features": [
+      "Lakefront location",
+      "Panoramic lake views",
+      "Private beach access",
+      "Marble countertops",
+      "Custom millwork",
+      "Premium appliances",
+      "Multiple decks",
+      "Landscaped grounds"
+    ],
+    "latitude": 42.0723,
+    "longitude": -87.7223,
+    "yearBuilt": 2008,
+    "lotSize": 25000,
+    "listingDate": "2024-02-12T00:00:00.000Z"
+  },
+  {
+    "id": "8",
+    "address": "258 River Road, Des Plaines, IL 60016",
+    "price": 320000,
+    "bedrooms": 2,
+    "bathrooms": 1.5,
+    "squareFeet": 1100,
+    "propertyType": "Condo",
+    "images": [
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1519947486511-46149fa0a254?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1564540574859-0dfb63293365?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop"
+    ],
+    "description": "Affordable condo perfect for first-time buyers or investors. Updated kitchen and bathrooms, in-unit laundry, and balcony overlooking the courtyard. Building amenities include pool, fitness room, and assigned parking. Great location near shopping and highways.",
+    "features": [
+      "Updated kitchen",
+      "In-unit laundry",
+      "Private balcony",
+      "Pool access",
+      "Fitness room",
+      "Assigned parking",
+      "Storage unit",
+      "Near shopping"
+    ],
+    "latitude": 42.0334,
+    "longitude": -87.8834,
+    "yearBuilt": 1985,
+    "lotSize": 0,
+    "listingDate": "2024-01-25T00:00:00.000Z"
+  }
+]
