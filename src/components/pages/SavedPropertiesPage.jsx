@@ -33,9 +33,9 @@ const SavedPropertiesPage = () => {
       
       setSavedProperties(savedResult);
       
-      const savedPropertyIds = savedResult.map(saved => saved.propertyId);
+const savedPropertyIds = savedResult.map(saved => saved.property_id);
       const filteredProperties = propertiesResult.filter(property => 
-        savedPropertyIds.includes(property.id)
+        savedPropertyIds.includes(property.Id)
       );
       
       setProperties(filteredProperties);
@@ -49,9 +49,9 @@ const SavedPropertiesPage = () => {
 
   const handleRemoveProperty = async (propertyId) => {
     try {
-      await savedPropertyService.delete(propertyId);
-      setSavedProperties(prev => prev.filter(saved => saved.propertyId !== propertyId));
-      setProperties(prev => prev.filter(property => property.id !== propertyId));
+await savedPropertyService.delete(propertyId);
+      setSavedProperties(prev => prev.filter(saved => saved.property_id !== propertyId));
+      setProperties(prev => prev.filter(property => property.Id !== propertyId));
       toast.success('Property removed from saved');
     } catch (error) {
       toast.error('Failed to remove property');
@@ -62,7 +62,7 @@ const SavedPropertiesPage = () => {
     if (window.confirm('Are you sure you want to remove all saved properties?')) {
       try {
         await Promise.all(
-          savedProperties.map(saved => savedPropertyService.delete(saved.propertyId))
+savedProperties.map(saved => savedPropertyService.delete(saved.property_id))
         );
         setSavedProperties([]);
         setProperties([]);
